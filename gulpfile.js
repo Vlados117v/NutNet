@@ -7,8 +7,9 @@ var rename = require("gulp-rename"); //npm install gulp-rename или глоба
 var sass = require("gulp-sass"); //npm install gulp-rename или глобально для всего npm install -g gulp-sass
 var browserSync = require('browser-sync').create(); //npm install -g browser-sync
 var reload = browserSync.reload; // из документации. для обновления страницы
-var autoprefixer;
-
+var autoprefixer = require("gulp-autoprefixer"); // кроссплатформа
+var spritesmith  = require('gulp.spritesmith'),
+    merge        = require('merge-stream');
 
 
 
@@ -22,9 +23,14 @@ var autoprefixer;
 function css_style(done){
 	gulp.src('scss/**/*.scss') // выбирает файл (любой файл scss)
 	.pipe(sass({  //применяем функцию sass, можно и пустую
-		errorLogToConsole: true
+		errorLogToConsole: true,
+		outputStyle: 'compressed'
 	}))
 	.on("error",console.error.bind(console))
+	.pipe(autoprefixer({
+		browsers: ['last 2 versions'],
+		cascade: false
+	}))
 	.pipe(rename('style.css')) // переименовываем выходной файл
 	.pipe(gulp.dest('css/')) //сохраняем 
 	done(); 
@@ -36,8 +42,17 @@ function watch_sass(){
 	//в этой папке. можно установить нужное расширение при желании  gulp.watch("./**/*.html").on("change", reload);
 }	
 
+//################################################################//
+//################# Спрайты  ############################//
+//################################################################//
 
-
+gulp.task('sprite', function () {
+  var spriteData = gulp.src('images/*.png').pipe(spritesmith({
+    imgName: 'sprite.png',
+    cssName: 'sprite.css'
+  }));
+  return spriteData.pipe(gulp.dest('path/to/output/'));
+});
 
 //################################################################//
 //################# Синхронизация с браузером ############################//
@@ -69,7 +84,7 @@ function watch_sync(){
 
 // Вызов из SASS в CSS, запуск синхронизации с браузером, запуск постоянного отслеживания изменений для релоуда страницы
 gulp.task("default", gulp.parallel(watch_sass,sync,watch_sync));  //вызов по дефолту по команде gulp. Gulp.series(несколько функций)//gulp.task(css_style); вызов gulp css_style
-//gulp.task(sync);
+gulp.task(css_style);
 
 
 

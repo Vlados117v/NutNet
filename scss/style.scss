@@ -1,3 +1,4 @@
+@import url('sprite.css');
 *{
 	box-sizing: border-box;
 }
@@ -5,7 +6,7 @@
 body {
 	max-width: 1600px;
 	font-family: 'Roboto', sans-serif;
-	font-size: 14px;
+	font-size: 14px;  
 	font-weight: 300;
 }
 
@@ -24,7 +25,7 @@ font-family: 'Roboto', sans-serif;*/
 		text-transform: uppercase;
 		display: block;
 		margin: 0 auto;
-	}
+	} 
 
 	a:hover {
 		text-decoration: none;
@@ -94,6 +95,9 @@ header {
 			color: #00E0D0;	
 		}
 
+		.color {
+			color: #00E0D0 !important;
+		}
 
 		.header_info {
 			margin: 162px 0 27px;
@@ -382,6 +386,7 @@ header {
 			font-family: 'Playfair Display', serif;
 			font-size: 22px;
 			font-weight: 700;	
+			min-width: 186px;
 		}
 
 		.works_link {
@@ -390,6 +395,7 @@ header {
 			font-family: 'Roboto', sans-serif;
 			font-size: 14px;
 			font-weight: 300;
+			min-width: 200px;
 			a {
 				color: #413d4b;
 			}
@@ -421,7 +427,8 @@ header {
 			font-size: 14px;
 			font-weight: 400;
 			line-height: 26px;
-			padding-bottom: 55px;	 	
+			padding-bottom: 55px;	
+			min-height: 170px; 	
 		} 
 
 		.name {
@@ -463,6 +470,10 @@ header {
 
 		.employees {
 			padding: 42px 65px;
+		}
+
+		.employees img:hover{
+			cursor: pointer;
 		}
 	} 
 
@@ -599,7 +610,7 @@ header {
 				top: 80px;		
 			}
 
-			a {
+			.subscribe {
 				padding: 13px 15px;
 				border: 1px solid #9E98B0;
 				color: #9E98B0;
@@ -634,11 +645,12 @@ header {
 				display: inline-block;
 			}
 		}
-	.third {
+		.third {
 			padding-top: 67px; 
 			ul {
 				display: flex;  
 				justify-content: space-between; 
+				min-width: 350px;
 			}
 
 			ul:last-child {
@@ -669,6 +681,6 @@ header {
 
 			.copy {
 				padding-right: 35px;
-			}		
+			}	
 		}	
 	}
