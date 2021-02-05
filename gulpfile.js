@@ -8,8 +8,7 @@ var sass = require("gulp-sass"); //npm install gulp-rename или глобаль
 var browserSync = require('browser-sync').create(); //npm install -g browser-sync
 var reload = browserSync.reload; // из документации. для обновления страницы
 var autoprefixer = require("gulp-autoprefixer"); // кроссплатформа
-var spritesmith  = require('gulp.spritesmith'),
-    merge        = require('merge-stream');
+
 
 
 
